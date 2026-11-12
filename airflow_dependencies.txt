@@ -1,0 +1,48 @@
+﻿enrich_fact_order_items.py:25 items = spark.read.format("delta").load(
+enrich_fact_order_items.py:29 orders = spark.read.format("delta").load(
+enrich_fact_order_items.py:73 enriched.write.format("delta") \
+enrich_fact_order_items.py:76 .save(f"{base}/gold/olist/fact_order_items")
+export_gold_postgres.py:22 gold_path = "/app/data/gold/olist"
+export_gold_postgres.py:44 df = spark.read.format("delta").load(
+export_gold_postgres.py:45 f"{gold_path}/{table}"
+finalize_gold_dates.py:29 fact_orders = spark.read.format("delta").load(
+finalize_gold_dates.py:78 fact_orders_updated.write.format("delta") \
+finalize_gold_dates.py:81 .save(f"{base}/fact_orders")
+finalize_gold_dates.py:83 dim_date.write.format("delta") \
+finalize_gold_dates.py:86 .save(f"{base}/dim_date")
+gold_catalog.py:20 products = spark.read.format("delta").load(f"{silver}/products")
+gold_catalog.py:21 sellers = spark.read.format("delta").load(f"{silver}/sellers")
+gold_catalog.py:22 categories = spark.read.format("delta").load(f"{silver}/categories")
+gold_catalog.py:23 items = spark.read.format("delta").load(f"{silver}/order_items")
+gold_catalog.py:98 df.write.format("delta").mode("overwrite") \
+gold_catalog.py:100 .save(f"{gold}/{name}")
+gold_dim_customers.py:26 customers = spark.read.format("delta").load(source)
+gold_dim_customers.py:50 .save(target)
+gold_dim_date.py:29 orders = spark.read.format("delta").load(source)
+gold_dim_date.py:50 .save(target)
+gold_fact_orders.py:30 orders = spark.read.format("delta").load(f"{silver}/orders")
+gold_fact_orders.py:31 items = spark.read.format("delta").load(f"{silver}/order_items")
+gold_fact_orders.py:32 payments = spark.read.format("delta").load(f"{silver}/payments")
+gold_fact_orders.py:105 .save(gold)
+gold_kpis.py:33 df = spark.read.format("delta").load(f"{base}/{name}")
+silver_catalog.py:47 df = spark.read.format("delta").load(f"{bronze}/{name}")
+silver_catalog.py:76 valid.write.format("delta").mode("overwrite") \
+silver_catalog.py:77 .option("overwriteSchema", "true").save(f"{silver}/{name}")
+silver_catalog.py:79 invalid.write.format("delta").mode("overwrite") \
+silver_catalog.py:80 .option("overwriteSchema", "true").save(f"{quarantine}/{name}")
+silver_commerce.py:34 df = spark.read.format("delta").load(
+silver_commerce.py:86 valid_df.write.format("delta") \
+silver_commerce.py:89 .save(f"{silver_base}/{table_name}")
+silver_commerce.py:91 invalid_df.write.format("delta") \
+silver_commerce.py:94 .save(f"{quarantine_base}/{table_name}")
+silver_orders.py:27 bronze_path = "/app/data/bronze/olist/orders"
+silver_orders.py:28 silver_path = "/app/data/silver/olist/orders"
+silver_orders.py:32 df = spark.read.format("delta").load(bronze_path)
+silver_orders.py:136 .save(silver_path)
+silver_orders.py:139 invalid_df.write.format("delta").mode("overwrite").save(quarantine_path)
+silver_remaining.py:30 reviews = spark.read.format("delta").load(f"{bronze}/reviews")
+silver_remaining.py:68 geo = spark.read.format("delta").load(f"{bronze}/geolocation")
+silver_remaining.py:123 valid.write.format("delta").mode("overwrite") \
+silver_remaining.py:125 .save(f"{silver}/{name}")
+silver_remaining.py:127 invalid.write.format("delta").mode("overwrite") \
+silver_remaining.py:129 .save(f"{quarantine}/{name}")

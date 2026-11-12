@@ -1,0 +1,5 @@
+# Packages Python pour l'éditeur (analyse des imports).
+# L'exécution réelle se fait dans Docker (voir dockerfile).
+pyspark==3.5.6
+delta-spark==3.3.2
+pandas
